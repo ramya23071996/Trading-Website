@@ -1,0 +1,257 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+  
+<style>
+
+    /* 1st div */
+    .traco-container {
+  background-color: #000;
+  color: #39FF14;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  
+}
+
+.heading {
+  /* text-align: center; */
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #FFD700;
+}
+
+.traco-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.traco-graphic img {
+  max-width: 90%;
+  height: 500px;
+  background-color: transparent;
+}
+
+.traco-form {
+  background-color: #111;
+  /* border: 2px solid #FFD700; */
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.traco-form label {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #39FF14;
+}
+
+.traco-form input,
+.traco-form select {
+  padding: 10px;
+  margin-top: 5px;
+  background-color: white;
+  border: 1px solid #39FF14;
+  color:black;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.btn-send {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #39FF14;
+  /* color: #000; */
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.alt-contact {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #ccc;
+  font-weight: bold;
+}
+
+/* 2nd div */
+.second {
+  background-color: #111;
+  color: #39FF14;
+  text-align: center;
+  padding: 30px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 3rd div */
+
+.features-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #000;
+    padding: 40px 20px;
+    gap: 20px;
+  }
+
+  .feature-box {
+    flex: 1 1 calc(50% - 20px);
+    background-color: #111;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    display: flex;
+  }
+
+  .feature-box img {
+    max-width: 60px;
+    margin-bottom: 15px;
+  }
+
+  .tech h3 { color: #39ff14; }
+  .training h3 { color: #ffd700; }
+  .research h3 { color: #00bfff; }
+  .marketing h3 { color: #ff8c00; }
+
+  @media (max-width: 1024px) {
+    .feature-box {
+      flex: 1 1 calc(50% - 20px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .feature-box {
+      flex: 1 1 100%;
+    }
+
+    .features-wrapper {
+      padding: 20px 10px;
+    }
+
+    .feature-box img {
+      max-width: 50px;
+    }
+
+    .feature-box h3 {
+      font-size: 1.2rem;
+    }
+
+    .feature-box p {
+      font-size: 0.95rem;
+    }
+  }
+
+/* 📱 Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .traco-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .traco-form {
+    padding: 20px;
+  }
+
+  .traco-form label {
+    font-size: 0.95rem;
+  }
+
+  .btn-send {
+    font-size: 1rem;
+  }
+}
+</style>
+
+<div class="traco-container">
+  
+
+  <div class="traco-content">
+    <!-- Left: Illustration -->
+    <div class="traco-graphic">
+      <img src="{{ MEDIA_URL }}images/img1.png" alt="TRACO Partnership Graphic">
+    </div>
+
+    <!-- Right: Form -->
+     <div class="traco-content1">
+        <h2 class="heading">Welcome to the First Step <br>of Becoming a TRACO Partner</h2>
+    <form class="traco-form">
+      
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+      
+      <input type="email" id="email" name="email" placeholder="Email Id" required>
+
+      
+      <select id="city" name="city" >
+        <option value="">Select City</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Chennai">Chennai</option>
+        <!-- Add more cities -->
+      </select>
+
+      
+      <input type="text" id="pincode" class="design" name="pincode" placeholder="Pincode" required>
+
+      <button type="submit" class="btn-send" style="border-radius: 50px;">Send OTP</button>
+    </form>
+    <p class="alt-contact">Contact us Alternatively,You can Contact <br>Our Business Partner Team <br>Phone Number : 022 982231 <br>Email id : Busibesspartner@tranco.in</p>
+    </div>
+  </div>
+ 
+</div>
+<div class="second">
+    <h2>People become partners to earn passive income and grow with a trusted brand.</h2>
+    <p style="color: white;">They get access to high commissions,marketing <br>support,and long-term business potential.</p>
+    <hr style="color: white; width: 50%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
+</div>
+
+<div class="features-wrapper">
+  <div class="feature-box tech">
+    <img src="{{ MEDIA_URL }}images/img2.png" alt="Technology Icon" />
+    <div style="text-align: left;">
+    <h3>Technology</h3>
+    <p>A customer-centric focus on technology with pioneering product launches like TradeTiger, online browser-based trading, installable terminals, mobile, call n trade and in-person trade through branch offices.</p>
+    </div>    
+</div>
+
+  <div class="feature-box training">
+    <img src="{{ MEDIA_URL }}images/img3.png" alt="Training Icon" />
+    <div style="text-align: left;">
+    <h3>Training</h3>
+    <p>Comprehensive training for the business partner and their employees at the nearest branch.</p>
+    </div>
+  </div>
+
+  <div class="feature-box research">
+    <img src="{{ MEDIA_URL }}images/img4.png" alt="Research Icon" />
+    <div style="text-align: left;">
+    <h3>Research</h3>
+    <p>In an information-centric business like ours, knowledge makes all the difference. We deliver quality and in-depth research.</p>
+     </div>  
+</div>
+
+  <div class="feature-box marketing">
+    <img src="{{ MEDIA_URL }}images/img5.png" alt="Marketing Icon" />
+    <div style="text-align: left;">
+    <h3>Marketing Support</h3>
+    <p>Facilitating business development by client level events, and activities for your outlet.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

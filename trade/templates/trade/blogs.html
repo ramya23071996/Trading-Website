@@ -1,0 +1,320 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+        body {
+            background: #0e1111;
+            color: #fff;
+        }
+        .hero-text {
+            margin-top: 80px;
+        }
+        .highlight {
+            color: #d2ff3c;
+            font-weight: bold;
+        }
+        .info-section {
+            font-size: 1.2em;
+        }
+        .image-frame {
+            border-radius: 50%;
+            border: 2px solid #b3ff00;
+            padding: 20px;
+            background: #1a1a1a;
+            box-shadow: 0 0 20px #4e4e4e;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .star-icon {
+            position: absolute;
+            width: 40px;
+        }
+        .star-top-right {
+            top: 6%;
+            right: 20%;
+        }
+        .star-bottom-left {
+            bottom: 6%;
+            left: 61%;
+        }
+        .card{
+            position: relative;
+        }
+        .card_head{
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            color: black;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        body { background: #161a1a; color: #eaeaea; }
+        .nav-tabs { border-bottom: none }
+        .nav-link.active { background: #292d2e; color: #c5fe45 !important; font-weight: bold }
+        .nav-link { color: #c5fe45 }
+        .card { background: #171b1c; color: #fff; border-radius: 25px; margin: 15px }
+        .card img { border-radius: 25px 25px 0 0; }
+        .section-title { padding-top: 20px; font-size: 1.5rem; color: #c5fe45; }
+        .card-text { color: #d6d6d6; }
+
+        .neon-tabs {
+  border: 2px solid #d7ff70;
+  border-radius: 24px;
+  background: #131616;
+  overflow: hidden;
+  justify-content: center;
+  display: flex;
+  min-width: 600px;
+}
+.neon-tabs .nav-link {
+  color: #d7ff70;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  margin: 0 2.5rem;
+  padding: 1rem 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+.neon-tabs .nav-link.active {
+  background: #eaeaea;
+  color: #222;
+  border-radius: 20px;
+  font-weight: 700;
+}
+.neon-tabs .nav-link:not(.active):hover {
+  background: rgba(215,255,112,0.1);
+  color: #d7ff70;
+}
+.neon-tabs .nav-link {
+  border-radius: 20px;
+}
+
+.card{
+    position: relative;
+}
+.card_head{
+    position: absolute;
+    top: 16px;
+    left: 16px; 
+    background: white;
+    padding: 8px 12px;
+    color: black;
+}
+
+        @media (max-width: 767px) {
+            .image-frame {
+                width: 200px;
+                height: 200px;
+                padding: 8px;
+            }
+            .star-icon {
+                width: 22px;
+            }
+        }
+    </style>
+  
+<div class="container-fluid" style="background: #0e1111; min-height: 100vh; padding-left: 250px;">
+    <div class="row justify-content-center align-items-center" style="min-height:100vh;">
+        <!-- Text Section -->
+        <div class="col-lg-7 col-md-8 pt-5 ">
+            <h1 class="fw-bold" style="color:#fff;">Don’t Just Gain info</h1>
+            <h2 style="color: #b5ff44; font-weight: bold;">Build Knowledge</h2>
+            <div class="mt-4" style="font-size: 1.2em; color:#e0e0e0;">
+                Whether you’re a new investor or a <br>market expert, we’ve got something for <br>everyone at the 
+                <span style="color:#b5ff44; font-weight: bold;">TRACO</span> blog
+            </div>
+        </div>
+        <!-- Image Section -->
+        <div class="col-lg-5 col-md-4 d-flex justify-content-center mt-5 mt-md-0 position-relative">
+            <div style="
+                position: relative; 
+                border-radius: 50%; 
+                border: 2px solid #b5ff44; 
+                padding: 18px; 
+                width: 330px; 
+                height: 390px;
+                background: #fff;
+                display: flex; 
+                align-items: center; 
+                justify-content: center;">
+                <img src="{{ MEDIA_URL }}images/blog1.jpg" alt="Person" class="img-fluid" style="border-radius:50%; width: 95%; height: 100%; object-fit:cover;"/>
+                <!-- Top Star Icon -->
+                <img src="{{ MEDIA_URL }}images/sparkling_star.png" alt="" style="width:64px; position: absolute; top:-24px; right:15px;">
+                <!-- Bottom Star Icon -->
+                <img src="{{ MEDIA_URL }}images/sparkling_star.png" alt="" style="width:64px; position: absolute; bottom:-22px; left:22px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- TABS NAVIGATION SECTION -->
+<div class="container py-4">
+    <ul class="nav nav-tabs neon-tabs mb-4" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="stocks-tab" data-bs-toggle="tab" data-bs-target="#stocks" type="button" role="tab">Stocks</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="mutual-tab" data-bs-toggle="tab" data-bs-target="#mutualfunds" type="button" role="tab">Mutual Funds</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab">Personal Finance</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="futures-tab" data-bs-toggle="tab" data-bs-target="#futures" type="button" role="tab">Futures & Options</button>
+  </li>
+</ul>
+
+    <div class="tab-content" id="dashboardTabContent">
+        <!-- Stocks Tab -->
+        <div class="tab-pane fade show active" id="stocks" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog2.jpg" class="card-img-top" alt="EV Stocks" width="300" height="400">
+                        <div class="card_head"><h4>Top Performing <br>EV Stocks</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Top Performing EV Stocks</h5>
+                            <p class="card-text">5 Mins Read . 20 May 2025<br>Top 5 Performing Stock in EV Sector in India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog3.jpg" class="card-img-top" alt="Rare Earth" width="300" height="400">
+                       <div class="card_head"><h4>Top Rare Earth<br>Stocks</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Top Rare Earth Stock</h5>
+                            <p class="card-text">4 Mins Read . 05 May 2025<br>Top Rare Earth Stock in India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog4.jpg" class="card-img-top" alt="Blue Chip" width="300" height="400">
+                        <div class="card_head"><h4>Blue Chip Stock in <br>May 2025</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Blue Chip Stock in May 2025</h5>
+                            <p class="card-text">5 Mins Read . 20 May 2025<br>Top 10 BLUE Chip Stock to Watch in July 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mutual Funds Tab -->
+        <div class="tab-pane fade" id="mutualfunds" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog5.jpg" class="card-img-top" alt="SIP Trend" width="300" height="400">
+                       <div class="card_head"><h4>5 Years SIP Trend</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">5 Years SIP Trend</h5>
+                            <p class="card-text">5 Mins Read . 20 May 2025<br>A beginner-friendly guide...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog6.png" class="card-img-top" alt="Nifty" width="300" height="400">
+                       <div class="card_head"><h4>Nifty Beens V/S  <br>Nifty Index</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nifty Beens V/S Nifty Index</h5>
+                            <p class="card-text">4 Mins Read . 05 Apr 2025<br>From equity to debt to hybrid...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog7.png" class="card-img-top" alt="TREPS" width="300" height="400">
+                       <div class="card_head"><h4>Benefits of Investing <br>TREPS</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Benefits of Investing TREPS</h5>
+                            <p class="card-text">2 Mins Read . 20 Jun 2025<br>Explore the pros and cons...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Personal Finance Tab -->
+        <div class="tab-pane fade" id="personalfinance" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog7.png" class="card-img-top" alt="SIP Trend" width="300" height="400">
+                        <div class="card-body">
+                            <h5 class="card-title">5 Years SIP Trend</h5>
+                            <p class="card-text">5 Mins Read . 20 May 2025<br>A beginner-friendly guide...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog7.png" class="card-img-top" alt="Nifty" width="300" height="400">
+                        <div class="card-body">
+                            <h5 class="card-title">Nifty Beens V/S Nifty Index</h5>
+                            <p class="card-text">4 Mins Read . 05 Apr 2025<br>From equity to debt to hybrid...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog7.png" class="card-img-top" alt="TREPS" width="300" height="400">
+                        <div class="card-body">
+                            <h5 class="card-title">Benefits of Investing TREPS</h5>
+                            <p class="card-text">2 Mins Read . 20 Jun 2025<br>Explore the pros and cons...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Futures & Options Tab: You can add content here -->
+        <div class="tab-pane fade" id="futures" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog2.jpg" class="card-img-top" alt="EV Stocks" width="300" height="400">
+                        <div class="card_head"><h4>Top Performing <br>EV Stocks</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Top Performing EV Stocks</h5>
+                            <p class="card-text">5 Mins Read . 20 May 2025<br>Top 5 Performing Stock in EV Sector in India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog3.jpg" class="card-img-top" alt="Rare Earth" width="300" height="400">
+                       <div class="card_head"><h4>Top Rare Earth <br> Stocks</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Top Rare Earth Stock</h5>
+                            <p class="card-text">4 Mins Read . 05 May 2025<br>Top Rare Earth Stock in India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ MEDIA_URL }}images/blog4.jpg" class="card-img-top" alt="Blue Chip" width="300" height="400">
+                        <div class="card_head"><h4>Blue Chip stock in <br>May 2025</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Blue Chip Stock in May 2025</h5>
+                            <p class="card-text">5 Mins Read . 20 May 2025<br>Top 10 BLUE Chip Stock to Watch in July 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+{% endblock %}

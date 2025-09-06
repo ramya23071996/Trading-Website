@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TRACO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .navbar-custom {
+      background-color: #1a1a1a;
+    }
+
+    .navbar-brand {
+      color: #00ff88;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .nav-link {
+      color: #ffffff !important;
+      margin-right: 6rem;
+      font-size: 20px;
+
+    }
+
+    .nav-link:hover {
+      color: #00ff88 !important;
+    }
+
+    .profile-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+
+    .navbar-custom-link {
+      font-size: 18px;
+      padding: 10px 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-custom px-4">
+    <a class="navbar-brand" href="#">
+      <img src="{{ MEDIA_URL }}images/logo.png" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li><a class="nav-link" href="{% url 'trade:home' %}">Home</a></li>
+        <li><a class="nav-link" href="{% url 'trade:about_us' %}">About Us</a></li>
+        <li><a class="nav-link" href="{% url 'trade:blogs' %}">Blogs</a></li>
+        <li><a class="nav-link" href="{% url 'trade:become_partner' %}">Become a Partner</a></li>
+        <li><a class="nav-link" href="{% url 'trade:login_page' %}">
+          <img src="{{ MEDIA_URL }}images/log_pin.png" alt="Logo">
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+  <footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container text-md-left">
+      <div class="row">
+
+        <!-- Logo & Social -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+          <img src="{{ MEDIA_URL }}images/logo.png" alt="Logo" class="mb-3" style="width: 150px;">
+          <p>Get in Touch</p>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-success btn-sm rounded-circle"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="btn btn-success btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="btn btn-success btn-sm rounded-circle"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <!-- Home Section -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">Home</h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Trade Investor</a></li>
+            <li><a href="#" class="text-white text-decoration-none">About Us</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Blogs</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Become a Partner</a></li>
+          </ul>
+        </div>
+
+        <!-- Information Section -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">Information</h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Market Explore</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Ready Token</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Main Option</a></li>
+            <li><a href="#" class="text-white text-decoration-none">File Checking</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources Section -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">Resources</h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Blogs</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Doc</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Press Kit</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">Newsletter</h6>
+          <form class="d-flex">
+            <input type="email" class="form-control me-2" placeholder="Enter Your Email">
+            <button class="btn btn-success" type="submit">Subscribe</button>
+          </form>
+          <small class="d-block mt-2">NFTs are Transforming the way Commerce is Transacted.</small>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

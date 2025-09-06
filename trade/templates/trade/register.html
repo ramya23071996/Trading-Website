@@ -1,0 +1,97 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .text-neon {
+  color: #39FF14;
+  font-size: 20px;
+}
+
+
+</style>
+<div class="container-fluid bg-black text-white min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="row w-100">
+    <!-- Left Side: Golden Bull & Gold Bars -->
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+      <img src="{{ MEDIA_URL }}images/Goldbull.png" alt="Golden Bull" class="img-fluid" style="max-height: 900px;">
+    </div>
+
+    <!-- Right Side: Login Form -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="card bg-dark  border-gold p-2" style="width: 100%; max-width: 600px;">
+        <h2 class="text-center mb-4"><span class="text-neon">Register</span></h2>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="text-black" class="form-label" style="font-size: 20px;"><span class="text-neon">Name</span></label>
+            <input type="text" class="form-control" id="email" name="email" required>
+            <label for="text-black" class="form-label"><span class="text-neon">Mobile Number</span></label>
+            <input type="number" class="form-control " id="email" name="email" required>
+            <label for="text-black" class="form-label"><span class="text-neon">Email Id</span></label>
+            <input type="email" class="form-control " id="email" name="email" required>
+            <label for="text-black" class="form-label"><span class="text-neon">Password</span></label>
+            <input type="password" class="form-control " id="email" name="email" required>
+            <label for="text-black" class="form-label"><span class="text-neon">Confirm Password</span></label>
+            <input type="password" class="form-control " id="email" name="email" required>
+          </div>
+          <div class="mb-3 text-end">
+            <a href="#"><span class="text-neon">Forgot Your Password?</span></a>
+          </div>
+          <button type="submit" class="btn text-white w-100" style="background-color: rgb(82, 73, 73);">Register</button>
+          
+        </form>
+        <p class="text-center mt-3"><span class="text-neon">Already Have an Account </span><a href="{% url 'trade:login_page' %}" class="text-gold"><span class="text-neon">Log in Here </span></a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const emailInput = form.querySelector("input[name='email']");
+    const mobileInput = form.querySelector("input[name='email']");
+    const passwordInput = form.querySelectorAll("input[type='password']")[0];
+    const confirmPasswordInput = form.querySelectorAll("input[type='password']")[1];
+
+    form.addEventListener("submit", function (e) {
+      let valid = true;
+      let messages = [];
+
+      // Email format check
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(emailInput.value)) {
+        valid = false;
+        messages.push("Please enter a valid email address.");
+        emailInput.classList.add("is-invalid");
+      } else {
+        emailInput.classList.remove("is-invalid");
+      }
+
+      // Mobile number check (10 digits)
+      if (mobileInput.value.length !== 10) {
+        valid = false;
+        messages.push("Mobile number must be 10 digits.");
+        mobileInput.classList.add("is-invalid");
+      } else {
+        mobileInput.classList.remove("is-invalid");
+      }
+
+      // Password match check
+      if (passwordInput.value !== confirmPasswordInput.value) {
+        valid = false;
+        messages.push("Passwords do not match.");
+        confirmPasswordInput.classList.add("is-invalid");
+      } else {
+        confirmPasswordInput.classList.remove("is-invalid");
+      }
+
+      if (!valid) {
+        e.preventDefault();
+        alert(messages.join("\n"));
+      }
+    });
+  });
+</script>
+{% endblock %}

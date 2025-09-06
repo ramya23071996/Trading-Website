@@ -1,0 +1,1103 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+  background: #101415 !important; /* deep black */
+}
+    .home-hero {
+  background: url('{{ MEDIA_URL }}images/home2.png') center center/cover no-repeat;
+  /* background: transparent-semitransparent; */
+  width: 100vw;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 4vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.hero-content {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+.hero-tagline {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.hero-neon {
+  color: #c5fe45;
+  font-weight: 800;
+}
+.hero-main {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.hero-main .hero-neon {
+  color: #c5fe45;
+}
+
+.hero-users {
+  display: flex;
+  align-items: center;
+  margin: 28px 0 30px 0;
+}
+.hero-avatars {
+  display: flex;
+  gap: -12px;
+}
+.hero-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #101415;
+  margin-right: -16px;
+  box-shadow: 0 2px 9px rgba(0,0,0,0.12);
+}
+.hero-users-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 38px;
+  color: #fff;
+  font-weight: 500;
+}
+.hero-users-count {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+}
+.hero-users-label {
+  font-size: 1rem;
+  opacity: 0.96;
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.3rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  background: #21251e;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  margin-top: 18px;
+  width: fit-content;
+  box-shadow: 0 2px 10px rgba(152,255,73,0.08);
+  transition: background 0.18s;
+}
+.hero-cta-icon {
+  background: #c5fe45;
+  color: #131616;
+  font-weight: bold;
+  font-size: 1.4rem;
+  border-radius: 90px;
+  margin-right: 14px;
+  padding: 8px 15px;
+}
+
+/* Hero image section */
+.hero-image {
+  flex: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.hero-image img {
+  height: 420px;
+  width: auto;
+  border-radius: 44px;
+  box-shadow: 0 8px 48px rgba(93,255,95,0.18);
+  object-fit: cover;
+}
+
+/* Responsive Styles */
+@media (max-width: 1100px) {
+  .home-hero {
+    flex-direction: column;
+    padding: 1vw 0;
+    min-height: 540px;
+  }
+  .hero-content {
+    align-items: flex-start;
+    max-width: 90vw;
+    margin-bottom: 15px;
+  }
+  .hero-image img {
+    height: 290px;
+    max-width: 78vw;
+    border-radius: 40px;
+  }
+}
+@media (max-width: 700px) {
+  .home-hero,
+  .hero-content {
+    flex-direction: column;
+    max-width: 99vw;
+    padding: 6px 2vw;
+  }
+  .hero-main {
+    font-size: 1.7rem;
+  }
+  .hero-avatars .hero-avatar {
+    width: 38px;
+    height: 38px;
+    margin-right: -8px;
+  }
+  .hero-users-info {
+    margin-left: 18px;
+    font-size: 0.9rem;
+  }
+  .hero-image img {
+    height: 155px;
+    border-radius: 24px;
+  }
+  .hero-cta {
+    font-size: 1rem;
+    padding: 0.44rem 1.1rem;
+    border-radius: 26px;
+  }
+  .hero-cta-icon {
+    font-size: 1.1rem;
+    margin-right: 7px;
+    padding: 5px 7px;
+    border-radius: 50px;
+  }
+}
+
+.years-expert-section {
+  background: #101415;
+  color: #fff;
+  padding: 3rem 0 2rem 0;
+  text-align: center;
+}
+
+.years-expert-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.years-expert-graphic {
+  margin: 0 auto 0.6rem auto;
+  width: 230px;
+  height: 170px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.years-graphic {
+  font-size: 10rem;
+  font-weight: 900;
+  color: #e3e3e3;
+  text-shadow:
+    0 0 42px #ccff57,
+    0 0 62px #ccff57,
+    0 4px 0 #222,
+    0 2px 24px #ccd457;
+  filter: drop-shadow(0 2px 18px #d2ff7e);
+  display: inline-block;
+}
+
+.years-expert-desc {
+  max-width: 800px;
+  font-size: 1.35rem;
+  line-height: 1.4;
+  margin: 0.6rem auto 0.7rem auto;
+  position: relative;
+}
+
+.years-expert-highlight {
+  color: #c5fe45;
+  font-weight: 500;
+}
+
+.years-bold {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Bottom Section */
+.years-expert-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: 1200px;
+  margin: 1.3rem auto 0 auto;
+  gap: 28px;
+}
+
+.years-expert-left {
+  font-size: 1.35rem;
+  font-weight: 500;
+  text-align: left;
+  max-width: 330px;
+  min-width: 180px;
+  padding-left: 2vw;
+}
+
+.years-expert-center {
+  flex: 1;
+  font-size: 1.17rem;
+  font-weight: 400;
+  color: #e3e6e9;
+  text-align: center;
+}
+
+.years-expert-img img {
+  max-width: 360px;
+  height: auto;
+  margin-right: 2vw;
+  position: absolute;
+  top: 760px;
+  left: 75%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .years-expert-graphic {
+    width: 160px; height: 108px;
+  }
+  .years-graphic { font-size: 5.6rem;}
+  .years-expert-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 1.2rem;
+  }
+  .years-expert-left, .years-expert-center, .years-expert-img {
+    text-align: center;
+    padding-left: 0;
+    margin: 0;
+  }
+  .years-expert-img img {
+    max-width: 95vw;
+    margin-right: 0;
+  }
+}
+@media (max-width: 576px) {
+  .years-expert-section { padding: 1.7rem 0 1rem 0;}
+  .years-expert-graphic { width: 92px; height: 62px;}
+  .years-graphic { font-size: 3rem;}
+  .years-expert-desc { font-size: 1rem; }
+  .years-expert-left, .years-expert-center { font-size: 1.02rem;}
+}
+
+.features-traco {
+  background: #101415;
+  padding: 2.7rem 0 2rem 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.features-row {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 0;
+  max-width: 1260px;
+  width: 98vw;
+  margin: 0 auto;
+}
+
+/* Left & Right Cards */
+.feature-card.left-card,
+.feature-card.right-card {
+  background: linear-gradient(140deg, #393d40 80%, #232527 100%);
+  border-radius: 38px;
+  width: 29%;
+  min-width: 220px;
+  max-width: 380px;
+  height: 315px;
+  box-shadow: 0 9px 26px rgba(0,0,0,0.16);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.14rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.feature-card.right-card {
+  margin-left: -38px;
+}
+
+.feature-card.left-card {
+  margin-right: -38px;
+}
+
+/* Center Neon Card (Overlaps) */
+.feature-card.center-card {
+  background: #c5fe45;
+  color: #111;
+  border-radius: 44px;
+  width: 35%;
+  min-width: 260px;
+  max-width: 410px;
+  height: 410px;
+  margin-top: -86px;
+  box-shadow: 0 15px 48px rgba(197,254,69,0.22);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Card Elements */
+.feature-number {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #c5fe45;
+  margin-bottom: 15px;
+}
+
+.center-card .feature-number {
+  color: #222;
+}
+
+.feature-title {
+  font-size: 1.42rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+}
+
+.feature-desc {
+  font-size: 1.11rem;
+  margin-bottom: 23px;
+  color: #191c24;
+}
+
+.feature-link {
+  display: inline-block;
+  color: #222;
+  font-weight: 700;
+  font-size: 1.09rem;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.feature-arrow {
+  display: inline-block;
+  background: #222;
+  color: #b5ff55;
+  font-weight: bold;
+  border-radius: 50px;
+  margin-left: 7px;
+  padding: 1px 8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .features-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .feature-card.left-card,
+  .feature-card.right-card,
+  .feature-card.center-card {
+    width: 93vw;
+    min-width: unset;
+    max-width: unset;
+    margin: 0 0 22px 0;
+    height: auto;
+    border-radius: 24px;
+  }
+  .feature-card.center-card {
+    margin-top: 0;
+    border-radius: 31px;
+    box-shadow: 0 7px 26px rgba(197,254,69,0.14);
+  }
+}
+
+@media (max-width: 576px) {
+  .features-traco { padding: 1.2rem 0; }
+  .feature-card.left-card,
+  .feature-card.right-card,
+  .feature-card.center-card {
+    font-size: 1rem;
+    min-width: unset;
+    max-width: unset;
+    border-radius: 16px;
+    padding: 0.7rem 0.6rem;
+  }
+  .feature-number { font-size: 1.25rem; margin-bottom: 9px; }
+  .feature-title { font-size: 1rem; margin-bottom: 10px; }
+  .feature-desc { font-size: 0.96rem; margin-bottom: 13px; }
+  .feature-link { font-size: 0.95rem; }
+  .feature-arrow { font-size: 1rem; padding: 0 4px; }
+}
+
+.how-works-section {
+  background: #101415;
+  padding: 2.8rem 0 2.1rem 0;
+  position: relative;
+}
+
+.how-works-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
+}
+
+.how-works-steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.how-works-step {
+  flex: 1;
+  max-width: 270px;
+  min-width: 180px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 54px;
+}
+
+.how-works-circle {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  background: #10182a;
+  box-shadow: 0 0 42px #c5fe45, 0 0 62px #c5fe45;
+  margin: 0 auto 13px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #181c26;
+  position: relative;
+}
+
+.neon-glow {
+  box-shadow: 0 0 36px #c5fe45, 0 0 85px #c5fe45;
+}
+
+.how-works-circle img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.how-works-label {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.how-works-desc {
+  font-size: 1.11rem;
+  font-weight: 400;
+  color: #e9ecf9;
+  line-height: 1.28;
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+.neon-green {
+  color: #c5fe45;
+}
+
+.how-works-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 100px;
+  height: 0;
+  border-top: 3px solid #c5fe45;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .how-works-steps {
+    max-width: 97vw;
+    gap: 3px;
+  }
+  .how-works-step {
+    max-width: 180px;
+    padding-bottom: 34px;
+  }
+  .how-works-circle { width: 79px; height: 79px; }
+  .how-works-circle img { width: 38px; height: 38px; }
+  .how-works-label { font-size: 1.1rem; }
+  .how-works-desc { font-size: 0.97rem; max-width: 130px; }
+  .how-works-line { top: 60px; border-top-width: 2px; }
+}
+
+@media (max-width: 576px) {
+  .how-works-section { padding: 1.2rem 0; }
+  .how-works-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .how-works-step {
+    max-width: 96vw;
+    padding-bottom: 14px;
+  }
+  .how-works-circle { width: 56px; height: 56px; margin-bottom: 8px;}
+  .how-works-circle img { width: 22px; height: 22px; }
+  .how-works-label { font-size: .97rem; }
+  .how-works-desc { font-size: 0.84rem; max-width: 90vw; }
+  .how-works-line { display: none; }
+}
+
+.dashboard-container {
+  display: flex;
+  background: #222625;
+  border: 8px solid #c5fe45;
+  border-radius: 36px;
+  min-height: 720px;
+  max-width: 1400px;
+  margin: 2rem auto;
+  overflow: hidden;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.dashboard-sidebar {
+  background: #262829;
+  min-width: 235px;
+  max-width: 270px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem 1rem 1.2rem;
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.2rem;
+}
+
+.profile-img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: 1.17rem;
+  color: #fff;
+}
+
+.profile-email {
+  color: #e6e6e6;
+  font-size: 0.92rem;
+  margin-top: 2px;
+}
+
+.sidebar-nav .nav-group {
+  font-size: 1.08rem;
+  padding: 0.72rem 0;
+  color: #ededed;
+  cursor: pointer;
+}
+.sidebar-nav .neon-text { color: #c5fe45; font-weight: 700; }
+
+.dashboard-main {
+  flex: 1;
+  background: #373c3c;
+  padding: 1.8rem 2.2rem;
+  border-radius: 0 36px 36px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.1rem;
+  color: #fff;
+  font-size: 1.18rem;
+}
+
+.account-id { font-weight: 700; margin-right: 1.1rem; }
+.active-dot { color: #5dfc61; font-size: 1rem; margin-left: 4px;}
+.evaluation { font-size: 1.1rem; }
+.reset-btn {
+  padding: 2px 1rem;
+  border: 2px solid #fff;
+  border-radius: 21px;
+  background: none;
+  color: #fff;
+  font-weight: 600;
+  margin-left: 14px;
+  cursor: pointer;
+}
+
+.dashboard-metrics {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 2.3rem;
+}
+
+.metric-card {
+  background: #4b5153;
+  border-radius: 24px;
+  padding: 1.3rem 1.7rem;
+  flex: 1;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.metric-number { font-size: 1.2rem; font-weight: bold; margin: 0.6rem 0;color: #c5fe45; }
+.metric-label { font-size: 1rem; font-weight: 600; }
+.metric-foot { font-size: .97rem; margin-top: 4px; color: #a2a2a2;}
+.metric-foot.green { color: #5dfc61; }
+.metric-foot.red { color: #ff4545; }
+
+.dashboard-body {
+  display: flex;
+  gap: 1.2rem;
+  /* background: black; */
+}
+
+.dashboard-chart-area {
+  background: #444648;
+  border-radius: 22px;
+  padding: 1.4rem;
+  flex: 2;
+  min-width: 320px;
+  margin-right: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-title {
+  font-size: 1.3rem;
+  color: #c5fe45;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+.chart-subtitle { color: #d7d7d7; font-size: 1rem; margin-bottom: 1rem; }
+
+.custom-chart-placeholder {
+  background: #222625;
+  border-radius: 18px;
+  min-height: 190px;
+  margin-bottom: 1.4rem;
+  /* Insert actual chart here */
+}
+
+.dashboard-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.stats-card {
+  background: #55585b;
+  border-radius: 18px;
+  padding: 1rem 1.21rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.07rem;
+  box-shadow: 0 2px 20px rgba(87,255,93,0.08);
+}
+
+.stats-circle {
+  display: inline-block;
+  margin: 0.45rem 0.15rem 0.45rem 0.15rem;
+  font-size: 1.16rem;
+  font-weight: bold;
+  color: #fff;
+  background: conic-gradient(#ff4545 25%, #c5fe45 25%);
+  border-radius: 50%;
+  width: 51px;
+  height: 51px;
+  text-align: center;
+  line-height: 51px;
+}
+
+.goals .stats-circle { background: conic-gradient(#ff4545 11%, #c5fe45 31%, #dfdfdf 58%); }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .dashboard-container {
+    flex-direction: column;
+    border-radius: 28px;
+  }
+  .dashboard-sidebar {
+    max-width: none; min-width: unset; flex-direction: row; padding: 0.7rem;
+  }
+  .sidebar-profile { margin-bottom: 0; }
+  .dashboard-main { border-radius: 0 0 28px 28px;padding: 1rem 0.5rem;}
+  .dashboard-metrics { flex-direction: column; gap: 0.6rem; }
+  .dashboard-body { flex-direction: column; gap: 0.7rem;}
+}
+
+@media (max-width: 576px) {
+  .dashboard-container { padding: 0;border-width: 4px;}
+  .dashboard-sidebar { font-size: 0.97rem;padding: 0.4rem; }
+  .dashboard-main { padding: 0.3rem 0.16rem;}
+  .metric-card, .dashboard-chart-area, .stats-card { padding: 0.7rem 0.4rem; border-radius: 10px;}
+  .stats-circle { font-size: .88rem; width: 35px; height: 35px; line-height: 35px;}
+}
+
+.community-section {
+  background: #101415;
+  padding: 2.3rem 1rem 1.6rem 1rem;
+}
+
+.community-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.3rem;
+}
+
+.community-strong {
+  color: #c5fe45;
+  font-weight: 800;
+}
+
+.community-desc {
+  color: #c5fe45;
+  font-size: 1.2rem;
+  max-width: 740px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.47;
+  font-weight: 500;
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+  .community-title { font-size: 1.25rem; }
+  .community-desc { font-size: 0.96rem; max-width: 94vw;}
+  .community-section { padding: 1rem 0.3rem; }
+}
+
+.community-gallery {
+  background: #101415;
+  padding: 1.7rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.gallery-row {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.gallery-img {
+  background: transparent;
+  border-radius: 48px;
+  overflow: hidden;
+  box-shadow: 0 2px 22px rgba(31,43,19,0.13);
+  min-width: 320px;
+  min-height: 320px;
+  max-width: 420px;
+  max-height: 420px;
+  flex: 1 1 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 48px;
+  display: block;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .gallery-row { gap: 1rem; }
+  .gallery-img { min-width: 180px; min-height: 180px; border-radius: 31px; }
+  .gallery-img img { border-radius: 31px; }
+}
+
+@media (max-width: 768px) {
+  .gallery-row { flex-direction: column; gap: 1.2rem; }
+  .gallery-img { min-height: 150px; min-width: 0; max-width: 85vw; max-height: 220px; border-radius: 21px;}
+  .community-gallery { gap: 0.8rem; }
+  .gallery-img img { border-radius: 21px; }
+}
+
+
+</style>
+
+<section class="home-hero">
+  <div class="hero-content">
+    <div class="hero-tagline">Keep Your Money Safe <span class="hero-neon">!!!!</span></div>
+
+    <h1>
+      <span class="hero-main">Build Confidence With Every Single Trade.<br>Invest for Your <span class="hero-neon">Future</span></span>
+    </h1>
+
+    <div class="hero-users">
+      <div class="hero-avatars">
+        <img src="{{ MEDIA_URL }}images/home3.png" class="hero-avatar" alt="User" />
+        <img src="{{ MEDIA_URL }}images/home4.jpeg" class="hero-avatar" alt="User" />
+        <img src="{{ MEDIA_URL }}images/home5.jpg" class="hero-avatar" alt="User" />
+        <img src="{{ MEDIA_URL }}images/home6.png" class="hero-avatar" alt="User" />
+        <img src="{{ MEDIA_URL }}images/home7.png" class="hero-avatar" alt="User" />
+      </div>
+      <div class="hero-users-info">
+        <span class="hero-users-count">500+</span>
+        <span class="hero-users-label">Realtime Users</span>
+      </div>
+    </div>
+
+    <a class="hero-cta" href="#">
+      <span class="hero-cta-icon">&#8594;</span>
+      Your Trading Journey Started Here....
+    </a>
+  </div>
+  <div class="hero-image">
+    <img src="{{ MEDIA_URL }}images/home1.png" alt="Trading Confidence" />  
+    </div>
+</section>
+
+<section class="years-expert-section">
+  <div class="years-expert-top">
+    <div class="years-expert-graphic">
+      <span class="years-graphic">20</span>
+    </div>
+    <div class="years-expert-desc">
+      <p>
+        20 years of industry expertise, we've empowered thousands of traders to take control of their financial future. Our platform<br>
+        <span class="years-expert-highlight">
+          combines proven experience with cutting-edge tools to help you trade smarter, faster, and more confidently.
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="years-expert-bottom">
+    <div class="years-expert-left">
+      <span class="years-expert-highlight">Your Trusted</span> Trusted<br>
+      <span class="years-expert-highlight">Partners of <span class="years-bold">TRACO</span></span>
+    </div>
+    <div class="years-expert-center">
+      Built on trust. Driven by results.<br>
+      Your partner in every market <br><br>
+    </div>
+    <div class="years-expert-img">
+      <img src="{{ MEDIA_URL }}images/home8.png" alt="Chart on phone" />
+    </div>
+  </div>
+</section>
+
+<section class="features-traco">
+  <div class="features-row">
+    <div class="feature-card left-card">
+      <div class="feature-number">01.</div>
+      <div class="feature-title">Service For Any Level of Expertise.</div>
+    </div>
+    <div class="feature-card center-card">
+      <div class="feature-number">02.</div>
+      <div class="feature-title">Industries Best Practices</div>
+      <div class="feature-desc">
+        We follow the industry’s best practices to ensure security, transparency, and performance at every level. From advanced risk management to ………
+      </div>
+      <a href="#" class="feature-link">Learn More <span class="feature-arrow">&#8594;</span></a>
+    </div>
+    <div class="feature-card right-card">
+      <div class="feature-number">03.</div>
+      <div class="feature-title">Protected By Insurance</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="how-works-section text-center">
+  <h2 class="how-works-title">How it Works?</h2>
+  <div class="how-works-steps">
+    <div class="how-works-step">
+      <div class="how-works-circle neon-glow">
+        <img src="{{ MEDIA_URL }}images/home9.png" alt="Apply" />
+      </div>
+      <div class="how-works-label">Apply</div>
+      <div class="how-works-desc neon-green">Join thousands of traders who trust our platform every day.</div>
+    </div>
+    <div class="how-works-step">
+      <div class="how-works-circle neon-glow">
+        <img src="{{ MEDIA_URL }}images/home10.png" alt="Assessment" />
+      </div>
+      <div class="how-works-label">Assessment</div>
+      <div class="how-works-desc neon-green">Take our short assessment to discover your trading style, risk tolerance, and the tools that fit you best.</div>
+    </div>
+    <div class="how-works-step">
+      <div class="how-works-circle neon-glow">
+        <img src="{{ MEDIA_URL }}images/home11.png" alt="Get Funded" />
+      </div>
+      <div class="how-works-label">Get Funded</div>
+      <div class="how-works-desc neon-green">Trade with our capital and keep up to 90% of the profits.</div>
+    </div>
+    <div class="how-works-step">
+      <div class="how-works-circle neon-glow">
+        <img src="{{ MEDIA_URL }}images/home12.png" alt="Trade & Grow" />
+      </div>
+      <div class="how-works-label">Trade & Grow</div>
+      <div class="how-works-desc neon-green">Whether you're just starting or scaling up, our tools, support, and funding help you grow with confidence.</div>
+    </div>
+  </div>
+  <!-- Timeline SVG/Canvas Line -->
+  <div class="how-works-line"></div>
+</section>
+
+<div class="dashboard-container">
+  <aside class="dashboard-sidebar">
+    <div class="sidebar-profile">
+      <img src="{{ MEDIA_URL }}images/home3.png" class="profile-img" alt="User photo">
+      <div>
+        <div class="profile-name">Hello John</div>
+        <div class="profile-email">Johnbenando.gmail.in</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group neon-text">Dashboard</div>
+      <div class="nav-group">Live Trading Room</div>
+      <div class="nav-group">Trading Tools</div>
+      <div class="nav-group">FX Calculator</div>
+      <div class="nav-group">News Calender</div>
+      <div class="nav-group">Elite Trader Tools</div>
+      <div class="nav-group">Market Analysis</div>
+      <div class="nav-group">Mentorship</div>
+      <div class="nav-group">Book a Misting</div>
+    </nav>
+  </aside>
+
+  <main class="dashboard-main">
+    <div class="dashboard-header">
+      <div>
+        <span class="account-id">Account 123456</span>
+        <span class="account-status active-dot">Active</span>
+      </div>
+      <div class="evaluation">Evaluation $15,000 <button class="reset-btn">RESET</button></div>
+    </div>
+    <div class="dashboard-metrics">
+      <div class="metric-card">
+        <div class="metric-icon balance"></div>
+        <div class="metric-label">Balance:</div>
+        <div class="metric-number neon-value">$15,078.00</div>
+        <div class="metric-foot green">55% this Week</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon equality"></div>
+        <div class="metric-label">Equality:</div>
+        <div class="metric-number">$13,485.44</div>
+        <div class="metric-foot red">35% this Week</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon risk"></div>
+        <div class="metric-label">Max Risk Capital:</div>
+        <div class="metric-number">$178.00</div>
+        <div class="metric-foot">Updated Every 10 seconds</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon drawdown"></div>
+        <div class="metric-label">Drawdown Limit:</div>
+        <div class="metric-number">$15,078.00</div>
+        <div class="metric-foot">Highest Balance $15,078.00</div>
+      </div>
+    </div>
+
+    <div class="dashboard-body">
+      <div class="dashboard-chart-area">
+        <div class="chart-title neon-text">Account Balance</div>
+        <div class="chart-subtitle">Monitor Your Account Balance Fluctuation Over Time</div>
+         <img src="{{ MEDIA_URL }}images/home13.png" alt="Logo">
+        
+      </div>
+
+      <div class="dashboard-stats">
+        <div class="stats-card drawdown">
+          <div>Drawdown</div>
+          <div class="stats-circle">25%</div>
+          <div>Of Your Balance Left</div>
+          <div class="stats-circle">31%</div>
+          <div>Of Your Equality Left</div>
+        </div>
+        <div class="stats-card goals">
+          <div>Goals</div>
+          <div class="stats-circle">11%</div>
+          <div>$1,087 Out Of $10,000</div>
+          <div class="stats-circle">31%</div>
+          <div>7 Trading Days out of 30 Days</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<section class="community-section text-center">
+  <h2 class="community-title">
+    Build a <span class="community-strong">Strong</span> Community
+  </h2>
+  <p class="community-desc">
+    Join a global network of passionate traders. Share strategies, learn from experts, and grow together in a supportive, success-driven environment.
+  </p>
+</section>
+
+
+<section class="community-gallery">
+  <div class="gallery-row">
+    <div class="gallery-img">
+      <img src="{{ MEDIA_URL }}images/home14.png" alt="Handshake" />
+    </div>
+    <div class="gallery-img">
+      <img src="{{ MEDIA_URL }}images/home15.png" alt="Tour" />
+    </div>
+    <div class="gallery-img">
+      <img src="{{ MEDIA_URL }}images/home16.png" alt="Conference" />
+    </div>
+  </div>
+  <div class="gallery-row">
+    <div class="gallery-img">
+      <img src="{{ MEDIA_URL }}images/home17.png" alt="Boardroom" />
+    </div>
+    <div class="gallery-img">
+      <img src="{{ MEDIA_URL }}images/home18.jpg" alt="Formal Meeting" />
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}

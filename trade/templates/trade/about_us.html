@@ -1,0 +1,476 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+
+<style>
+
+/* About Us Banner Section */
+.about-banner {
+  position: relative;
+  width: 95vw;
+  max-width: 1300px;
+  min-height: 370px;
+  margin: 2rem auto;
+  background: url('{{ MEDIA_URL }}images/about1.jpg') center center/cover no-repeat;
+  border-radius: 45px;
+  overflow: hidden;
+}
+
+.about-title {
+  position: absolute;
+  left: 37%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.about-black {
+  color: #101618;
+}
+
+.about-neon {
+  color: #c5fe45;
+  margin-left: 10px;
+}
+
+/* Who are We Section */
+.about-who {
+  background: #101415;
+  padding: 2.5rem 1rem 1.5rem 1rem;
+  text-align: center;
+}
+
+.about-who-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #eaeaea;
+  margin-bottom: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.about-neon {
+  color: #c5fe45;
+}
+
+.about-who-desc {
+  color: #ecf0f2;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.45;
+}
+
+.about-mission {
+  background: #101415;
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.mission-img img {
+  width: 100%;
+  max-width: 550px;
+  height: 370px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  display: block;
+  /* position: relative; */
+}
+
+.mission-card {
+  background: #f8f8f8;
+  padding: 2.2rem 2.1rem 2.2rem 2.1rem;
+  max-width: 540px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #1a1a1a;
+  /* position: absolute; */
+  /* right: 1%; */
+}
+
+.mission-card h2 {
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 1.3rem;
+}
+
+.mission-card p {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1.45;
+  max-width: 430px;
+}
+
+.about-vision {
+  background: #101415;
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.vision-card {
+  background: #f8f8f8;
+  padding: 2.2rem 2.1rem 2.2rem 2.1rem;
+  max-width: 540px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #1a1a1a;
+}
+
+.vision-card h2 {
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.vision-card p {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1.45;
+  max-width: 430px;
+}
+
+.vision-img img {
+  width: 100%;
+  max-width: 550px;
+  height: 370px;
+  object-fit: cover;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: block;
+}
+
+.choose-traco {
+  background: #101415;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+}
+
+.choose-heading {
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.neon-green {
+  color: #c5fe45;
+}
+
+.choose-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.choose-card {
+  background: linear-gradient(135deg, #f6f7f7 90%, #eaeaea 100%);
+  box-shadow: 0 1px 6px rgba(44,44,44,.06);
+  border-radius: 32px;
+  min-width: 210px;
+  width: 300px;
+  max-width: 330px;
+  padding: 2rem 1.1rem 1.2rem 1.1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choose-icon {
+  width: 62px;
+  height: 62px;
+  margin-bottom: 1.1rem;
+  object-fit: contain;
+}
+
+.choose-card p {
+  font-size: 1.13rem;
+  color: #222;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.23;
+}
+
+/* Tablet screens */
+@media (max-width: 992px) {
+  .choose-grid {
+    gap: 1rem;
+  }
+  .choose-card {
+    width: 46vw;
+    min-width: 160px;
+    padding: 1.4rem 0.7rem;
+    border-radius: 23px;
+  }
+  .choose-icon { width: 45px; height: 45px; }
+  .choose-heading { font-size: 1.5rem; }
+}
+
+/* Mobile screens */
+@media (max-width: 576px) {
+  .choose-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .choose-card {
+    width: 92vw;
+    min-width: 120px;
+    padding: 1.1rem 0.4rem;
+    border-radius: 17px;
+  }
+  .choose-icon { width: 36px; height: 36px; }
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .about-vision {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .vision-card,
+  .vision-img img {
+    max-width: 90vw;
+    min-height: 240px;
+    border-radius: 12px;
+  }
+  .vision-card {
+    border-radius: 12px 12px 0 0;
+    padding: 1.2rem 1rem 1.2rem 1rem;
+  }
+  .vision-img img {
+    border-radius: 0 0 12px 12px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-vision {
+    padding: 1rem 4px;
+  }
+  .vision-card,
+  .vision-img img {
+    min-height: 140px;
+    max-width: 98vw;
+  }
+  .vision-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+  .vision-card p {
+    font-size: 1rem;
+    max-width: 95vw;
+    padding: 0 2px;
+  }
+}
+
+
+/* Media Queries */
+
+/* Large tablets and smaller desktops */
+@media (max-width: 992px) {
+  .about-banner {
+    min-height: 280px;
+  }
+  .about-title {
+    font-size: 2.8rem;
+    left: 5%;
+  }
+  .about-who-title {
+    font-size: 1.8rem;
+  }
+  .about-who-desc {
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+}
+
+/* Tablets and small screens */
+@media (max-width: 768px) {
+  .about-banner {
+    min-height: 240px;
+  }
+  .about-title {
+    font-size: 2.2rem;
+    left: 5%;
+  }
+  .about-who-title {
+    font-size: 1.6rem;
+  }
+  .about-who-desc {
+    font-size: 1.05rem;
+    max-width: 600px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 576px) {
+  .about-banner {
+    border-radius: 25px;
+    min-height: 200px;
+    width: 90vw;
+  }
+  .about-title {
+    font-size: 1.8rem;
+    left: 4%;
+  }
+  .about-who-title {
+    font-size: 1.3rem;
+  }
+  .about-who-desc {
+    font-size: 1rem;
+    max-width: 90vw;
+    padding: 0 1rem;
+  }
+}
+
+/* Media Queries */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .about-mission {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .mission-img img,
+  .mission-card {
+    max-width: 90vw;
+    min-height: 240px;
+    border-radius: 12px;
+  }
+  .mission-img img {
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 6px;
+  }
+  .mission-card {
+    border-radius: 0 0 12px 12px;
+    padding: 1.2rem 1rem 1.2rem 1rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .about-mission {
+    padding: 1rem 4px;
+  }
+  .mission-img img,
+  .mission-card {
+    min-height: 150px;
+    max-width: 98vw;
+  }
+  .mission-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+  .mission-card p {
+    font-size: 1rem;
+    max-width: 95vw;
+    padding: 0 2px;
+  }
+}
+
+</style>
+
+
+  <div class="about-banner">
+  <div class="about-title">
+    <span class="about-black">About </span><span class="about-neon">TRACO</span>
+  </div>
+</div>
+
+<section class="about-who text-center">
+  <h2 class="about-who-title">
+    Who are <span class="about-neon">We?</span>
+  </h2>
+  <p class="about-who-desc">
+    With over 20 years of experience in the financial markets, we're more than just a trading platform — we're a trusted partner in your trading journey.
+  </p>
+  <p class="about-who-desc">
+    Built on transparency, performance, and community, we're here to help you trade smarter and grow stronger — every step of the way.
+  </p>
+</section>
+
+<section class="about-mission d-flex align-items-center justify-content-center">
+  <div class="mission-img">
+    <img src="{{ MEDIA_URL }}images/about2.png" alt="Our mission team">
+  </div>
+  <div class="mission-card">
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to empower traders of all levels with cutting-edge tools, expert guidance, and funding opportunities that unlock real potential.
+    </p>
+  </div>
+</section>
+
+<section class="about-vision d-flex align-items-center justify-content-center">
+  <div class="vision-card">
+    <h2>Our Vision</h2>
+    <p>
+      We envision a future where financial opportunity is accessible, transparent, and driven by innovation — empowering traders to grow, connect, and succeed on their own terms.
+    </p>
+  </div>
+  <div class="vision-img">
+    <img src="{{ MEDIA_URL }}images/about2.png" alt="Our vision team">
+  </div>
+</section>
+
+<section class="choose-traco">
+  <h2 class="choose-heading">
+    Why Choose <span class="neon-green">TRACO</span>
+  </h2>
+  <div class="choose-grid">
+    <div class="choose-card">
+      <img src="{{ MEDIA_URL }}images/about3.png" alt="Research" class="choose-icon">
+      <p>Research & Recommended Stock</p>
+    </div>
+    <div class="choose-card">
+      <img src="{{ MEDIA_URL }}images/about4.png" alt="Community" class="choose-icon">
+      <p>Join Our Community of 5 Million + Happy Investers</p>
+    </div>
+    <div class="choose-card">
+      <img src="{{ MEDIA_URL }}images/about5.png" alt="Platform" class="choose-icon">
+      <p>Invest in All-in-one Platform</p>
+    </div>
+    <div class="choose-card">
+      <img src="{{ MEDIA_URL }}images/about6.png" alt="Branches" class="choose-icon">
+      <p>Get personalized service at 160+ branches in India</p>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock %}

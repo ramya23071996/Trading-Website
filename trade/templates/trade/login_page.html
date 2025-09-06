@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .text-neon {
+  color: #39FF14;
+}
+
+
+</style>
+<div class="container-fluid bg-black text-white min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="row w-100">
+    <!-- Left Side: Golden Bull & Gold Bars -->
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+      <img src="{{ MEDIA_URL }}images/Goldbull.png" alt="Golden Bull" class="img-fluid" style="max-height: 900px;">
+    </div>
+
+    <!-- Right Side: Login Form -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="card bg-dark  border-gold p-2" style="width: 100%; max-width: 600px;">
+        <h2 class="text-center mb-4"><span class="text-neon">Login</span></h2>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="email" class="form-label"><span class="text-neon">E-mail Id</span></label>
+            <input type="email" class="form-control  text-white" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label"><span class="text-neon">Password</span></label>
+            <input type="password" class="form-control  text-black" id="password" name="password" required>
+          </div>
+          <div class="mb-3 text-end">
+            <a href="#"><span class="text-neon">Forgot Your Password?</span></a>
+          </div>
+          <button type="submit" class="btn  w-100">Login</button>
+        </form>
+        <p class="text-center mt-3"><span class="text-neon">New Customer? </span><a href="{% url 'trade:register' %}" class="text-gold"><span class="text-neon">Create Your Account</span></a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
